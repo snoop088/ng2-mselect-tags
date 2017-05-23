@@ -1,0 +1,95 @@
+:host {
+    display: block;
+    position: relative;
+}
+:host .input-field input,
+:host .input-field {
+    margin: 0;
+    padding: 0;
+}
+:host .input-field {
+    margin-top: -1rem;
+}
+.dropdown {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: #fff;
+    /*display: none;*/
+    border: solid #41A62A;
+    border-width: 0 1px 1px 1px;
+    z-index: 100;
+    overflow: auto;
+}
+.dropdown ul {
+    padding: 0;
+    margin: 0;
+}
+.dropdown li {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.dropdown li:hover {
+    background: #eee;
+}
+.dropdown li i {
+    display: none;
+    color: #41A62A;
+    font-size: 1.2rem;
+}
+.dropdown li:hover i {
+    display: block;
+}
+.dropdown.active {
+    display: block;
+}
+.dropdown.pos-bottom {
+    top: 2rem;
+}
+.dropdown.pos-top {
+    bottom: 2rem;
+}
+.collect {
+    border-bottom: 1px solid #888;
+    overflow: auto;
+}
+.collect ul {
+    list-style: none;
+    padding: 0; margin: 0;
+}
+.collect li {
+    position: relative;
+    font-size: 0.8rem;
+    display: inline-block;
+    padding: 0.25rem;
+    margin: 0.25rem;
+    background: #eee;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+.collect li.disabled {
+    pointer-events: none;
+    background: #e0e0e0;
+}
+.collect li .del {
+    position: absolute; 
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 120;
+    background: rgba(0,0,0,0.66);
+    border-radius: 0.5rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+.collect li:hover .del {
+    display: flex;
+}
+.collect i {
+    display: block;
+    font-size: 1em;
+    color: #fff;
+}

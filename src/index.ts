@@ -1,4 +1,5 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MSelectTagsComponent } from './ng2-mselect-tags.component';
 import { MSelectTagsDirective } from './ng2-mselect-tags.directive';
@@ -12,7 +13,9 @@ export * from './ng2-mselect-tags.service';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     MSelectTagsComponent,
