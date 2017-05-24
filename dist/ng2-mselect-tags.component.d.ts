@@ -11,6 +11,7 @@ export declare const PARAM_TAGS_CONTROL_VALUE_ACCESSOR: any;
 export declare class MSelectTagsComponent implements OnInit, OnDestroy, ControlValueAccessor {
     private multiService;
     minChars: number;
+    placeholder: string;
     list: {}[];
     searchUrl: string;
     accessBy: string;

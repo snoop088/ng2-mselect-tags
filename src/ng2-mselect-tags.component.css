@@ -1,14 +1,29 @@
 :host {
     display: block;
+    font-size: 1em;
+}
+:host * {
+    box-sizing: border-box;
+}
+#add-icon {
+    fill: #333;
+}
+#rem-icon {
+    fill: #fff;
+}
+.input-data {
     position: relative;
 }
-:host .input-field input,
-:host .input-field {
+.search-field {
+    overflow: auto;
     margin: 0;
-    padding: 0;
 }
-:host .input-field {
-    margin-top: -1rem;
+.search-field input {
+    height: 2em;
+    width: 100%;
+    font-size: 1em;
+    border: 1px solid #333;
+    padding: 0.2em;
 }
 .dropdown {
     position: absolute;
@@ -17,7 +32,7 @@
     width: 100%;
     background: #fff;
     /*display: none;*/
-    border: solid #41A62A;
+    border: solid #333;
     border-width: 0 1px 1px 1px;
     z-index: 100;
     overflow: auto;
@@ -29,7 +44,7 @@
 .dropdown li {
     display: flex;
     align-items: center;
-    padding: 0.5rem;
+    padding: 0.2em;
     justify-content: space-between;
     cursor: pointer;
 }
@@ -38,8 +53,6 @@
 }
 .dropdown li i {
     display: none;
-    color: #41A62A;
-    font-size: 1.2rem;
 }
 .dropdown li:hover i {
     display: block;
@@ -47,26 +60,25 @@
 .dropdown.active {
     display: block;
 }
-.dropdown.pos-bottom {
-    top: 2rem;
-}
-.dropdown.pos-top {
-    bottom: 2rem;
+
+.dropdown.top {
+    bottom: 2em;
+    border-width: 1px 1px 0 1px;
 }
 .collect {
-    border-bottom: 1px solid #888;
+    border-bottom: 1px solid #333;
     overflow: auto;
 }
 .collect ul {
     list-style: none;
-    padding: 0; margin: 0;
+    padding: 0; margin: 0 0 0.25rem 0.25rem;
 }
 .collect li {
     position: relative;
     font-size: 0.8rem;
     display: inline-block;
     padding: 0.25rem;
-    margin: 0.25rem;
+    margin: 0.25rem 0.25rem 0 0;
     background: #eee;
     border-radius: 0.5rem;
     cursor: pointer;
@@ -87,9 +99,4 @@
 }
 .collect li:hover .del {
     display: flex;
-}
-.collect i {
-    display: block;
-    font-size: 1em;
-    color: #fff;
 }

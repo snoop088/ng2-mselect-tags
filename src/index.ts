@@ -6,10 +6,10 @@ import { MSelectTagsDirective } from './ng2-mselect-tags.directive';
 import { MSelectTagsPile } from './ng2-mselect-tags.pipe';
 import { MSelectTagsService } from './ng2-mselect-tags.service';
 
-export * from './ng2-mselect-tags.component';
-export * from './ng2-mselect-tags.directive';
-export * from './ng2-mselect-tags.pipe';
-export * from './ng2-mselect-tags.service';
+// export * from './ng2-mselect-tags.component';
+// export * from './ng2-mselect-tags.directive';
+// export * from './ng2-mselect-tags.pipe';
+// export * from './ng2-mselect-tags.service';
 
 @NgModule({
   imports: [
@@ -22,6 +22,9 @@ export * from './ng2-mselect-tags.service';
     MSelectTagsDirective,
     MSelectTagsPile
   ],
+  providers: [
+    MSelectTagsService
+  ],
   exports: [
     MSelectTagsComponent,
     MSelectTagsDirective,
@@ -29,10 +32,10 @@ export * from './ng2-mselect-tags.service';
   ]
 })
 export class MSelectTagsModule {
-  static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: MSelectTagsModule,
-      providers: [MSelectTagsService]
-    };
-  }
+  // static forRoot(): ModuleWithProviders {
+  //   return {
+  //     ngModule: MSelectTagsModule,
+  //     providers: [MSelectTagsService]
+  //   };
+  // }
 }

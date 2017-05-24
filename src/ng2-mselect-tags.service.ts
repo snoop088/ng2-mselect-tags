@@ -8,12 +8,8 @@ import 'rxjs/add/observable/of';
 @Injectable()
 export class MSelectTagsService {
 
-  constructor(private http: Http) {
-
-  }
+  constructor(private http: Http) {}
   public getAsyncOptions(url: string, keyword: string, accessBy: string): Observable<{}[]> { 
-    
-    
     if (url !== undefined) {
       const composedUrl = this.composeUrl(url, keyword);
       return this.http.get(composedUrl)
@@ -23,16 +19,15 @@ export class MSelectTagsService {
     } else {
       return Observable.of(null);
     }
-    
   }
   private composeUrl(url: string, keyword: string): string {
-      let composedUrl = "";
+      let composedUrl = '';
       if (url.indexOf('[keyword]') !== -1) {
         composedUrl = url
-          .replace('[keyword]', keyword)
+          .replace('[keyword]', keyword);
           return composedUrl;
       } else {
-        throw new Error('Missing [keyword] token in URL')
+        throw new Error('Missing [keyword] token in URL');
       }
     }
 }

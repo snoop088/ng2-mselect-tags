@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "build": "gulp build",
+    "postbuild" : "cp -R dist/ ../compotester/node_modules/ng2-mselect-tags",
     "build:watch": "gulp",
     "docs": "npm run docs:build",
     "docs:build": "compodoc -p tsconfig.json -n ng2-mselect-tags -d docs --hideGenerator",

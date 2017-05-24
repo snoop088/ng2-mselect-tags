@@ -1,10 +1,10 @@
 # ng2-mselect-tags
-Angular 2+ MultiSelect which adds tags into a container. Click a tag to remove from the selected.
+Angular 2+ MultiSelect which adds tags into a container. Click a tag to remove from the selected. The component is a custom value accessor and supports both template driven and reactive forms. AOT compatible.
 
 This control will allow you to access any json source or list and use a '.' delimitted accessor (aa.bb.cc) to select which items to list in the control
 
 **Options**
-### Inputs that se-multi-select-tags takes
+### Inputs that ng2-multi-select-tags takes
 1. minChars - minimum chars before searching starts (0 - default)
 2. list - source as an objects array {}[] to traverse
 3. searchUrl - source as string of endpoint url in the form of https://api.spotify.com/v1/search?type=artist&limit=25&q=[keyword]. Keyword is used to search the API in the searchUrl field.
@@ -36,7 +36,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 // Import your library
-import { SampleModule } from 'ng2-mselect-tags';
+import { MSelectTagsModule } from 'ng2-mselect-tags';
 
 @NgModule({
   declarations: [
@@ -46,7 +46,7 @@ import { SampleModule } from 'ng2-mselect-tags';
     BrowserModule,
 
     // Specify your library as an import
-    LibraryModule
+    MSelectTagsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -61,10 +61,10 @@ Once your library is imported, you can use its components, directives and pipes 
 <h1>
   {{title}}
 </h1>
-<sampleComponent></sampleComponent>
+<ng2-mselect-tags></ng2-mselect-tags>
 ```
 
-## Development
+### Development
 
 To generate all `*.js`, `*.d.ts` and `*.metadata.json` files:
 
@@ -78,6 +78,10 @@ To lint all `*.ts` files:
 $ npm run lint
 ```
 
-## License
+### Disclaimer
+
+This is a simple component with a specific purpose in its early stages of development. I have used this to learn about building and publishing components. It is generated using a Yeoman Generator and utilises rollup to produce AOT compatible FESM. Happy to improve it and receive critique or feature requests :)
+
+### License
 
 MIT © [Nikolay Dimitrov](mailto:snoop088@gmail.com)

@@ -19,41 +19,25 @@ export const PARAM_TAGS_CONTROL_VALUE_ACCESSOR: any = {
 
 @Component({
   selector: 'ng2-mselect-tags',
-  template: `
-  <div class="input-field">
-    <input type="text" name="search" [formControl]="search" (blur)="onInputBlur()" placeholder="Enter team name">
-  </div>
-  <div class="dropdown z-depth-1" [style.maxHeight.px]="calculateHeight()">
-    <ul>
-      <li *ngFor="let item of items" (click)="add($event, item)">{{item[listBy]}}
-        <i class="material-icons">add</i>
-      </li>
-    </ul>
-  </div>
-  <div class="collect" [style.height.em]="maxSelectHeight">
-    <ul *ngIf="selected">
-      <li *ngFor="let selItem of selected" (click)="remove($event, selItem)" [class.disabled]="isDisabled">{{selItem[listBy]}}
-        <div class="del"><i class="material-icons">clear</i></div>
-      </li>
-    </ul>
-  </div>`,
+  templateUrl: 'ng2-mselect-tags.component.html',
   styleUrls: ['ng2-mselect-tags.component.css'],
   providers: [PARAM_TAGS_CONTROL_VALUE_ACCESSOR]
 })
 export class MSelectTagsComponent implements OnInit, OnDestroy, ControlValueAccessor {
 
   @Input() minChars = 0;
+  @Input() placeholder: string; // the placeholder for the input field
   @Input() list: {}[] = [];
   @Input() searchUrl: string; // of the type https://api.spotify.com/v1/search?type=artist&limit=25&q=[keyword]
   @Input() accessBy = 'items'; // key which to use for accessing found results
   @Input() listBy = 'name'; // property which to use for listing the results
   @Input() maxPanelHeight: number;
-  @Input() maxContainerRows = 2;
+  @Input() maxContainerRows = 2; // under review: this should specify how many rows of tags to show before scroll
 
   public items: {}[] = [];
   public search: FormControl;
   public selected: {}[] = [];
-  
+
   public isDisabled: boolean;
 
   private itemsSubscription: Subscription;
@@ -72,8 +56,8 @@ export class MSelectTagsComponent implements OnInit, OnDestroy, ControlValueAcce
       this.itemsSubscription = this.search.valueChanges
         .debounceTime(300)
         .distinctUntilChanged()
-        .filter(str => { 
-          if (str === null) { return false }
+        .filter(str => {
+          if (str === null) { return false; }
           return str.length > this.minChars || str.length === 0; })
         .switchMap(searchTerm => {
           if (searchTerm.length === 0) {
@@ -83,7 +67,6 @@ export class MSelectTagsComponent implements OnInit, OnDestroy, ControlValueAcce
         })
         .subscribe(result => {
           this.items = result;
-          console.log(this.items);
         });
     }
   }
@@ -102,7 +85,7 @@ export class MSelectTagsComponent implements OnInit, OnDestroy, ControlValueAcce
     }
   }
   get maxSelectHeight(): number {
-    return this.maxContainerRows * 1.5;
+    return 0.5 + 1.5 * this.maxContainerRows + 0.25 * (this.maxContainerRows - 1);
   }
   onBlur() {
     this.onTouchedCallback();
