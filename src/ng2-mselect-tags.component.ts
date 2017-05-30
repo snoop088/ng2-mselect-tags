@@ -33,7 +33,7 @@ export class MSelectTagsComponent implements OnInit, OnDestroy, ControlValueAcce
   @Input() searchUrl: string; // of the type https://api.spotify.com/v1/search?type=artist&limit=25&q=[keyword]
   @Input() accessBy = 'items'; // key which to use for accessing found results
   @Input() listBy = 'name'; // property which to use for listing the results
-  @Input() maxPanelHeight: number;
+  @Input() maxPanelHeight: number; // max search result panel height in pixels
   @Input() maxContainerRows = 2; // under review: this should specify how many rows of tags to show before scroll
   @ViewChild('dropdown') public dropdown: ElementRef;
   @ViewChild('searchPanel') public searchPanel: ElementRef;
@@ -144,7 +144,6 @@ export class MSelectTagsComponent implements OnInit, OnDestroy, ControlValueAcce
       const viewPortRect = this.multiService.getViewportRect();
       const searchPanelRect = this.getSearchPanelRect();
       const dropdownHeight = Math.min(searchPanelOptionsHeight, defSearchPanelHeight || searchPanelOptionsHeight);
-      console.log(`total height: ${viewPortRect.height}, panel top: ${searchPanelRect.top}, dropdown height: ${dropdownHeight}`);
       if ((viewPortRect.height - searchPanelRect.top - dropdownHeight < 0) &&
         (viewPortRect.top + searchPanelRect.top - dropdownHeight > 0)) {
           setTimeout(() => resolve(true), 0);
@@ -153,9 +152,6 @@ export class MSelectTagsComponent implements OnInit, OnDestroy, ControlValueAcce
       }
     });
     return positionTop;
-    // console.log(viewPortRect);
-    // console.log(viewPortRect.height - dropdownRect.bottom);
-    
   }
 
   private add($event, item: {}) {

@@ -5,6 +5,8 @@ import { MSelectTagsComponent } from './ng2-mselect-tags.component';
 
 import { MSelectTagsService } from './ng2-mselect-tags.service';
 
+export * from './ng2-mselect-tags.component';
+export * from './ng2-mselect-tags.service';
 
 @NgModule({
   imports: [

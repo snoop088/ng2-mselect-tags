@@ -316,7 +316,6 @@ var MSelectTagsComponent = (function () {
             var /** @type {?} */ viewPortRect = _this.multiService.getViewportRect();
             var /** @type {?} */ searchPanelRect = _this.getSearchPanelRect();
             var /** @type {?} */ dropdownHeight = Math.min(searchPanelOptionsHeight, defSearchPanelHeight || searchPanelOptionsHeight);
-            console.log("total height: " + viewPortRect.height + ", panel top: " + searchPanelRect.top + ", dropdown height: " + dropdownHeight);
             if ((viewPortRect.height - searchPanelRect.top - dropdownHeight < 0) &&
                 (viewPortRect.top + searchPanelRect.top - dropdownHeight > 0)) {
                 setTimeout(function () { return resolve(true); }, 0);
@@ -326,8 +325,6 @@ var MSelectTagsComponent = (function () {
             }
         });
         return positionTop;
-        // console.log(viewPortRect);
-        // console.log(viewPortRect.height - dropdownRect.bottom);
     };
     /**
      * @param {?} $event
@@ -367,7 +364,7 @@ MSelectTagsComponent.decorators = [
     { type: Component, args: [{
                 selector: 'ng2-mselect-tags',
                 template: "<div class=\"input-data\" #searchPanel> <div class=\"search-field\"> <input type=\"text\" name=\"search\" [formControl]=\"search\" (blur)=\"onInputBlur()\" [placeholder]=\"placeholder || ''\"> </div> <div class=\"dropdown\" #dropdown [style.maxHeight.px]=\"searchPanelHeight\" [style.display]=\"isShown ? 'block' : 'none'\" [class.top]=\"isTop\"> <ul> <li *ngFor=\"let item of items\" (click)=\"add($event, item)\" [style.height]=\"selectOptionsHeight\">{{item[listBy]}} <svg id=\"add-icon\" fill=\"#000000\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z\" /> <path d=\"M0 0h24v24H0z\" fill=\"none\" /> </svg> </li> </ul> </div> </div> <div class=\"collect\" [style.height.rem]=\"maxSelectHeight\"> <ul *ngIf=\"selected\"> <li *ngFor=\"let selItem of selected\" (click)=\"remove($event, selItem)\" [class.disabled]=\"isDisabled\">{{selItem[listBy]}} <div class=\"del\"> <svg id=\"rem-icon\" fill=\"#000000\" height=\"16\" viewBox=\"0 0 24 24\" width=\"16\" xmlns=\"http://www.w3.org/2000/svg\"> <path d=\"M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z\" /> <path d=\"M0 0h24v24H0z\" fill=\"none\" /> </svg> </div> </li> </ul> </div>",
-                styles: [":host { display: block; font-size: 1em; } :host * { box-sizing: border-box; } #add-icon { fill: #333; } #rem-icon { fill: #fff; } .input-data { position: relative; } .search-field { overflow: auto; margin: 0; } .search-field input { height: 2em; width: 100%; font-size: 1em; border: 1px solid #333; padding: 0.2em; } .dropdown { position: absolute; left: 0; right: 0; width: 100%; background: #fff; /*display: none;*/ border: solid #333; border-width: 0 1px 1px 1px; z-index: 100; overflow: auto; } .dropdown ul { padding: 0; margin: 0; } .dropdown li { display: flex; align-items: center; padding: 4px; justify-content: space-between; cursor: pointer; } .dropdown li:hover { background: #eee; } .dropdown li i { display: none; } .dropdown li:hover i { display: block; } .dropdown.top { bottom: 2em; border-width: 1px 1px 0 1px; } .collect { border-bottom: 1px solid #333; overflow: auto; } .collect ul { list-style: none; padding: 0; margin: 0 0 0.25rem 0.25rem; } .collect li { position: relative; font-size: 0.8rem; display: inline-block; padding: 0.25rem; margin: 0.25rem 0.25rem 0 0; background: #eee; border-radius: 0.5rem; cursor: pointer; } .collect li.disabled { pointer-events: none; background: #e0e0e0; } .collect li .del { position: absolute;  top: 0; left: 0; right: 0; bottom: 0; z-index: 120; background: rgba(0,0,0,0.66); border-radius: 0.5rem; display: none; align-items: center; justify-content: center; } .collect li:hover .del { display: flex; }"],
+                styles: [":host { display: block; font-size: 1em; } :host * { box-sizing: border-box; } #add-icon { fill: #333; } #rem-icon { fill: #fff; } .input-data { position: relative; } .search-field { overflow: auto; margin: 0; } .search-field input { height: 2em; width: 100%; font-size: 1em; border: 1px solid #333; padding: 0.2em; } .dropdown { position: absolute; left: 0; right: 0; width: 100%; background: #fff; border: solid #333; border-width: 0 1px 1px 1px; z-index: 100; overflow: auto; } .dropdown ul { padding: 0; margin: 0; } .dropdown li { display: flex; align-items: center; padding: 4px; justify-content: space-between; cursor: pointer; } .dropdown li:hover { background: #eee; } .dropdown li i { display: none; } .dropdown li:hover i { display: block; } .dropdown.top { bottom: 2em; border-width: 1px 1px 0 1px; } .collect { border-bottom: 1px solid #333; overflow: auto; } .collect ul { list-style: none; padding: 0; margin: 0 0 0.25rem 0.25rem; } .collect li { position: relative; font-size: 0.8rem; display: inline-block; padding: 0.25rem; margin: 0.25rem 0.25rem 0 0; background: #eee; border-radius: 0.5rem; cursor: pointer; } .collect li.disabled { pointer-events: none; background: #e0e0e0; } .collect li .del { position: absolute;  top: 0; left: 0; right: 0; bottom: 0; z-index: 120; background: rgba(0,0,0,0.66); border-radius: 0.5rem; display: none; align-items: center; justify-content: center; } .collect li:hover .del { display: flex; }"],
                 providers: [PARAM_TAGS_CONTROL_VALUE_ACCESSOR]
             },] },
 ];
@@ -418,4 +415,4 @@ MSelectTagsModule.decorators = [
  */
 MSelectTagsModule.ctorParameters = function () { return []; };
 
-export { MSelectTagsModule };
+export { MSelectTagsModule, PARAM_TAGS_CONTROL_VALUE_ACCESSOR, SELECT_OPTION_HEIGHT, MSelectTagsComponent, MSelectTagsService };
