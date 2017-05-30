@@ -1,7 +1,7 @@
 # ng2-mselect-tags
-Angular 2+ MultiSelect which adds tags into a container. Click a tag to remove from the selected. The component is a custom value accessor and supports both template driven and reactive forms. AOT compatible.
+Angular 2+ MultiSelect which adds tags into a container. Click a tag to remove from the selected. The component implements a control value accessor and supports both template driven and reactive forms. AOT compatible.
 
-This control will allow you to access any json source or list and use a '.' delimitted accessor (aa.bb.cc) to select which items to list in the control
+This control will allow you to access any json source or list and use a '.' delimitted accessor (aa.bb.cc) to select which items to list in the container using autocomplete. When you a click on an item in the list the control would list its object as a value. Just like a normal select form input with a multiselect option.
 
 **Options**
 ### Inputs that ng2-multi-select-tags takes
@@ -10,7 +10,7 @@ This control will allow you to access any json source or list and use a '.' deli
 | --- | --- |
 | `minChars` | minimum chars before searching starts (0 - default) |
 | `list` | source as an objects array {}[] to traverse |
-| `searchUrl` | source as string of endpoint url in the form of https://api.spotify.com/v1/search?type=artist&limit=25&q=[keyword]. 'Keyword' is used to search the API in the searchUrl field. |
+| `searchUrl` | source as string of endpoint url in the form of https://api.github.com/search/users?q=[keyword]. 'Keyword' is used to search the API in the searchUrl field. |
 | `accessBy` | accessor to use for accessing the returned results. E.g. 'items' or 'data.artists' |
 | `listBy` | property used to list the resulted items from the accessor traversal. E.g. 'name', 'id', etc |
 | `maxPanelHeight` | The max height in pixels that the dropdown with options could become |
@@ -59,7 +59,7 @@ import { MSelectTagsModule } from 'ng2-mselect-tags';
 export class AppModule { }
 ```
 
-Once your library is imported, you can use its components, directives and pipes in your Angular application:
+Once your library is imported, you can include its module in your Angular application:
 
 ```xml
 <!-- You can now use your library component in app.component.html -->
