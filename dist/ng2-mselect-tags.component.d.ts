@@ -1,4 +1,4 @@
-import { OnInit, OnDestroy } from '@angular/core';
+import { OnInit, OnDestroy, ElementRef } from '@angular/core';
 import { ControlValueAccessor, FormControl } from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
@@ -8,6 +8,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import { MSelectTagsService } from './ng2-mselect-tags.service';
 export declare const PARAM_TAGS_CONTROL_VALUE_ACCESSOR: any;
+/** The fixed height of every option element. */
+export declare const SELECT_OPTION_HEIGHT = 32;
 export declare class MSelectTagsComponent implements OnInit, OnDestroy, ControlValueAccessor {
     private multiService;
     minChars: number;
@@ -18,10 +20,15 @@ export declare class MSelectTagsComponent implements OnInit, OnDestroy, ControlV
     listBy: string;
     maxPanelHeight: number;
     maxContainerRows: number;
+    dropdown: ElementRef;
+    searchPanel: ElementRef;
     items: {}[];
     search: FormControl;
     selected: {}[];
+    selectOptionsHeight: any;
     isDisabled: boolean;
+    isTop: boolean;
+    isShown: boolean;
     private itemsSubscription;
     private onTouchedCallback;
     private onChangeCallback;
@@ -30,6 +37,7 @@ export declare class MSelectTagsComponent implements OnInit, OnDestroy, ControlV
     ngOnDestroy(): void;
     value: any;
     readonly maxSelectHeight: number;
+    readonly searchPanelHeight: string | number;
     onBlur(): void;
     writeValue(value: any): void;
     registerOnChange(fn: any): void;
@@ -37,7 +45,8 @@ export declare class MSelectTagsComponent implements OnInit, OnDestroy, ControlV
     setDisabledState(isDisabled: boolean): void;
     onInputBlur(): void;
     checkItems(): boolean;
-    calculateHeight(): string | number;
+    checkOverlayPosition(): Promise<boolean>;
     private add($event, item);
     private remove($event, item);
+    private getSearchPanelRect();
 }

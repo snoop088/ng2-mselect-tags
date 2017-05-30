@@ -31,7 +31,6 @@
     right: 0;
     width: 100%;
     background: #fff;
-    /*display: none;*/
     border: solid #333;
     border-width: 0 1px 1px 1px;
     z-index: 100;
@@ -44,7 +43,7 @@
 .dropdown li {
     display: flex;
     align-items: center;
-    padding: 0.2em;
+    padding: 4px;
     justify-content: space-between;
     cursor: pointer;
 }
@@ -55,9 +54,6 @@
     display: none;
 }
 .dropdown li:hover i {
-    display: block;
-}
-.dropdown.active {
     display: block;
 }
 
