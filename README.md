@@ -1,12 +1,13 @@
 # ng2-mselect-tags
 
-[[![npm](https://img.shields.io/npm/dm/ng2-mselect-tags.svg)]()](https://www.npmjs.com/package/ng2-mselect-tags)
+[![downloads](https://img.shields.io/npm/dm/ng2-mselect-tags.svg)](https://www.npmjs.com/package/ng2-mselect-tags)
+[![version](https://img.shields.io/npm/v/ng2-mselect-tags.svg)](https://www.npmjs.com/package/ng2-mselect-tags)
 
 Angular 2+ MultiSelect which adds tags into a container. Click a tag to remove from the selected. The component implements a control value accessor and supports both template driven and reactive forms. AOT compatible.
 
 This control will allow you to access any json source or list and use a '.' delimitted accessor (aa.bb.cc) to select which items to list in the container using autocomplete. When you a click on an item in the list the control would list its object as a value. Just like a normal select form input with a multiselect option.
 
-[See it in action:](https://chromeye.github.io/ng2-mselect-tags/)
+[See it in action here](https://chromeye.github.io/ng2-mselect-tags/)
 
 **Options**
 
