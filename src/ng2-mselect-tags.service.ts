@@ -9,6 +9,7 @@ import 'rxjs/add/observable/of';
 export class MSelectTagsService {
 
   private documentRect: ClientRect;
+  public num = 1;
   constructor(private http: Http) {}
   public getAsyncOptions(url: string, keyword: string, accessBy: string): Observable<{}[]> { 
     if (url !== undefined) {
