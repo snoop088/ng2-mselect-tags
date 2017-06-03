@@ -37,7 +37,8 @@ module.exports = function(config) {
     plugins: [
       // Karma will require() these plugins
       'karma-jasmine',
-      'karma-chrome-launcher'
+      'karma-chrome-launcher',
+      'karma-webpack'
     ],
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
