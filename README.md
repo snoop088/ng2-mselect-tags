@@ -2,6 +2,7 @@
 
 [![downloads](https://img.shields.io/npm/dm/ng2-mselect-tags.svg)](https://www.npmjs.com/package/ng2-mselect-tags)
 [![version](https://img.shields.io/npm/v/ng2-mselect-tags.svg)](https://www.npmjs.com/package/ng2-mselect-tags)
+[![Build Status](https://travis-ci.org/snoop088/ng2-mselect-tags.svg?branch=master)](https://travis-ci.org/snoop088/ng2-mselect-tags)
 
 Angular 2+ MultiSelect which adds tags into a container. Click a tag to remove from the selected. The component implements a control value accessor and supports both template driven and reactive forms. AOT compatible.
 
