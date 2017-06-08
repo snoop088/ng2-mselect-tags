@@ -2,12 +2,14 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "moduleResolution": "node",
     "rootDir": "./src",
-    "module": "es2015",
+    "sourceMap": true,
+    "declaration": false,
     "target": "es5",
     "lib": [
-      "es2015",
+      "es2016",
       "dom"
     ],
     "skipLibCheck": true,

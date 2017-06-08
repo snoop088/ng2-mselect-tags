@@ -25,7 +25,7 @@ module.exports = function(config) {
       'node_modules/zone.js/dist/jasmine-patch.js',
       'node_modules/zone.js/dist/async-test.js',
       'node_modules/zone.js/dist/fake-async-test.js',
-
+      // starting file that imports the rest
        'src/test/index-test.js'
     ],
 
@@ -45,6 +45,7 @@ module.exports = function(config) {
     preprocessors: {
       'src/test/index-test.js': ['webpack']
     },
+    webpackMiddleware: { noInfo: true },
     webpack: require('./webpack.config')({env: 'test'}),
 
     // test results reporter to use
@@ -72,7 +73,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome', 'ChromeCanary'],
+    browsers: ['Chrome'],
     customLaunchers: {
       Chrome_travis_ci: {
         base: 'Chrome',
@@ -83,7 +84,7 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: true,
+    singleRun: false,
 
     // Concurrency level
     // how many browser should be started simultaneous
