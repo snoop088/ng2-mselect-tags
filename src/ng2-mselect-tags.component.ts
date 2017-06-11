@@ -50,10 +50,10 @@ export class MSelectTagsComponent implements OnInit, OnDestroy, ControlValueAcce
   private itemsSubscription: Subscription;
   private onTouchedCallback: () => void = () => { };
   private onChangeCallback: (_: any) => void = () => { };
-  private documentRect: ClientRect;
 
 
-  constructor(private multiService: MSelectTagsService) {
+
+  constructor(private mSelectTagsService: MSelectTagsService) {
     this.search = new FormControl();
     this.selectOptionsHeight = SELECT_OPTION_HEIGHT;
   }
@@ -71,9 +71,9 @@ export class MSelectTagsComponent implements OnInit, OnDestroy, ControlValueAcce
           return Observable.of(null);
         }
         if (this.list.length > 0) {
-          return this.multiService.getSyncOptions(this.list, searchTerm, this.listBy);
+          return this.mSelectTagsService.getSyncOptions(this.list, searchTerm, this.listBy);
         }
-        return this.multiService.getAsyncOptions(this.searchUrl, searchTerm, this.accessBy);
+        return this.mSelectTagsService.getAsyncOptions(this.searchUrl, searchTerm, this.accessBy);
       })
       .subscribe(result => {
         this.items = result;
@@ -143,7 +143,7 @@ export class MSelectTagsComponent implements OnInit, OnDestroy, ControlValueAcce
     let positionTop = new Promise((resolve, reject) => {
       const defSearchPanelHeight: number = this.searchPanelHeight === 'auto' ? null : parseInt(this.searchPanelHeight as string);
       const searchPanelOptionsHeight = this.checkItems() ? this.items.length * SELECT_OPTION_HEIGHT : 0;
-      const viewPortRect = this.getViewportRect();
+      const viewPortRect = this.mSelectTagsService.getViewportRect();
       const searchPanelRect = this.getSearchPanelRect();
       const dropdownHeight = Math.min(searchPanelOptionsHeight, defSearchPanelHeight || searchPanelOptionsHeight);
       if ((viewPortRect.height - searchPanelRect.top - dropdownHeight < 0) &&
@@ -173,61 +173,6 @@ export class MSelectTagsComponent implements OnInit, OnDestroy, ControlValueAcce
   }
   private getSearchPanelRect(): ClientRect {
     return this.searchPanel.nativeElement.getBoundingClientRect();
-  }
-  public getViewportRect(documentRect = this.documentRect): ClientRect {
-    // Cache the document bounding rect so that we don't recompute it for multiple calls.
-    if (!documentRect) {
-      this.cacheViewportGeometry();
-      documentRect = this.documentRect;
-    }
-
-    // Use the document element's bounding rect rather than the window scroll properties
-    // (e.g. pageYOffset, scrollY) due to in issue in Chrome and IE where window scroll
-    // properties and client coordinates (boundingClientRect, clientX/Y, etc.) are in different
-    // conceptual viewports. Under most circumstances these viewports are equivalent, but they
-    // can disagree when the page is pinch-zoomed (on devices that support touch).
-    // See https://bugs.chromium.org/p/chromium/issues/detail?id=489206#c4
-    // We use the documentElement instead of the body because, by default (without a css reset)
-    // browsers typically give the document body an 8px margin, which is not included in
-    // getBoundingClientRect().
-    const scrollPosition = this.getViewportScrollPosition(documentRect);
-    const height = window.innerHeight;
-    const width = window.innerWidth;
-
-    return {
-      top: scrollPosition.top,
-      left: scrollPosition.left,
-      bottom: scrollPosition.top + height,
-      right: scrollPosition.left + width,
-      height,
-      width,
-    };
-  }
-  private getViewportScrollPosition(documentRect = this.documentRect) {
-    // Cache the document bounding rect so that we don't recompute it for multiple calls.
-    if (!documentRect) {
-      this.cacheViewportGeometry();
-      documentRect = this.documentRect;
-    }
-
-    // The top-left-corner of the viewport is determined by the scroll position of the document
-    // body, normally just (scrollLeft, scrollTop). However, Chrome and Firefox disagree about
-    // whether `document.body` or `document.documentElement` is the scrolled element, so reading
-    // `scrollTop` and `scrollLeft` is inconsistent. However, using the bounding rect of
-    // `document.documentElement` works consistently, where the `top` and `left` values will
-    // equal negative the scroll position.
-    const top = -documentRect.top || document.body.scrollTop || window.scrollY ||
-      document.documentElement.scrollTop || 0;
-
-    const left = -documentRect.left || document.body.scrollLeft || window.scrollX ||
-      document.documentElement.scrollLeft || 0;
-
-    return { top, left };
-  }
-
-  /** Caches the latest client rectangle of the document element. */
-  private cacheViewportGeometry() {
-    this.documentRect = document.documentElement.getBoundingClientRect();
   }
 
 }
